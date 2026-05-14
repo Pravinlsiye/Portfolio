@@ -1,3 +1,4 @@
+import { Show } from "solid-js";
 import { profile } from "../lib/data";
 
 export default function Hero() {
@@ -5,10 +6,12 @@ export default function Hero() {
     <section id="top" class="relative pt-32 md:pt-40 pb-20 md:pb-28">
       <div class="mx-auto max-w-6xl px-4 md:px-6">
         <div class="flex flex-col items-start gap-6 reveal">
-          <span class="chip">
-            <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-dot" />
-            <span>Available for collaboration</span>
-          </span>
+          <Show when={profile.availability}>
+            <span class="chip">
+              <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-dot" />
+              <span>{profile.availability}</span>
+            </span>
+          </Show>
 
           <h1 class="font-display font-700 tracking-tight text-5xl sm:text-6xl md:text-7xl leading-[1.05]">
             <span class="block text-ink">{profile.name.split(" ")[0]}</span>
@@ -34,6 +37,17 @@ export default function Hero() {
               View Projects
               <span class="i-carbon-arrow-down" />
             </a>
+            <Show when={profile.resumeUrl}>
+              <a
+                href={profile.resumeUrl}
+                target="_blank"
+                rel="noopener"
+                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-500 glass glass-hover text-ink"
+              >
+                <span class="i-carbon-document" /> Resume
+                <span class="i-carbon-arrow-up-right text-ink-faint" />
+              </a>
+            </Show>
             <a
               href={`mailto:${profile.email}`}
               class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-500 glass glass-hover text-ink"
@@ -60,11 +74,13 @@ export default function Hero() {
             </a>
           </div>
 
-          <div class="flex flex-wrap gap-2 mt-2">
-            {[".NET", "Azure", "Kubernetes", "Docker", "ASP.NET Core", "SolidJS", "Three.js"].map((t) => (
-              <span class="chip">{t}</span>
-            ))}
-          </div>
+          <Show when={profile.heroChips?.length}>
+            <div class="flex flex-wrap gap-2 mt-2">
+              {profile.heroChips!.map((t) => (
+                <span class="chip">{t}</span>
+              ))}
+            </div>
+          </Show>
         </div>
       </div>
     </section>

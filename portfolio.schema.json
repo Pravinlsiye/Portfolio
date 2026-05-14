@@ -1,0 +1,102 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Portfolio Config",
+  "type": "object",
+  "required": ["profile", "experience", "education", "skills"],
+  "properties": {
+    "profile": {
+      "type": "object",
+      "required": ["name", "role", "email", "github", "githubUser"],
+      "properties": {
+        "name": { "type": "string" },
+        "role": { "type": "string" },
+        "tagline": { "type": "string" },
+        "location": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "phone": { "type": "string" },
+        "github": { "type": "string", "format": "uri" },
+        "githubUser": { "type": "string" },
+        "linkedin": { "type": "string", "format": "uri" },
+        "linkedinUser": { "type": "string" },
+        "resumeUrl": { "type": "string", "format": "uri" },
+        "summary": { "type": "string" },
+        "availability": { "type": "string" },
+        "heroChips": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "stats": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["k", "v"],
+        "properties": {
+          "k": { "type": "string" },
+          "v": { "type": "string" }
+        }
+      }
+    },
+    "experience": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["company", "role", "period"],
+        "properties": {
+          "company": { "type": "string" },
+          "role": { "type": "string" },
+          "location": { "type": "string" },
+          "period": { "type": "string" },
+          "blurb": { "type": "string" },
+          "projects": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["name", "desc", "stack"],
+              "properties": {
+                "name": { "type": "string" },
+                "desc": { "type": "string" },
+                "stack": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          },
+          "highlights": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "education": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["school", "degree", "period"],
+        "properties": {
+          "school": { "type": "string" },
+          "location": { "type": "string" },
+          "degree": { "type": "string" },
+          "period": { "type": "string" }
+        }
+      }
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["group", "items"],
+        "properties": {
+          "group": { "type": "string" },
+          "items": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "certifications": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": { "type": "string" },
+          "issuer": { "type": "string" },
+          "icon": { "type": "string" }
+        }
+      }
+    }
+  }
+}

@@ -79,20 +79,32 @@ export default function Education() {
 
           <ul class="grid sm:grid-cols-2 gap-3 relative">
             <For each={certifications}>
-              {(c) => (
-                <li class="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 hover:border-accent-cyan/40 transition-colors">
-                  <span class="inline-flex w-10 h-10 items-center justify-center rounded-lg bg-gradient-to-br from-accent-cyan/15 to-accent-violet/15 text-accent-cyan shrink-0">
-                    <span class="i-simple-icons-microsoftazure text-lg" />
-                  </span>
-                  <div class="flex-1 min-w-0">
-                    <p class="text-sm text-ink truncate">{c}</p>
-                    <p class="text-[11px] font-mono text-ink-faint mt-0.5 flex items-center gap-1">
-                      <span class="i-carbon-checkmark-filled text-emerald-400" />
-                      Verified · Microsoft
-                    </p>
-                  </div>
-                </li>
-              )}
+              {(c) => {
+                const iconClass =
+                  c.icon === "azure"
+                    ? "i-simple-icons-microsoftazure"
+                    : c.icon === "aws"
+                    ? "i-simple-icons-amazonaws"
+                    : c.icon === "gcp"
+                    ? "i-simple-icons-googlecloud"
+                    : c.icon
+                    ? `i-simple-icons-${c.icon}`
+                    : "i-carbon-certificate";
+                return (
+                  <li class="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 hover:border-accent-cyan/40 transition-colors">
+                    <span class="inline-flex w-10 h-10 items-center justify-center rounded-lg bg-gradient-to-br from-accent-cyan/15 to-accent-violet/15 text-accent-cyan shrink-0">
+                      <span class={`${iconClass} text-lg`} />
+                    </span>
+                    <div class="flex-1 min-w-0">
+                      <p class="text-sm text-ink truncate">{c.name}</p>
+                      <p class="text-[11px] font-mono text-ink-faint mt-0.5 flex items-center gap-1">
+                        <span class="i-carbon-checkmark-filled text-emerald-400" />
+                        Verified{c.issuer ? ` · ${c.issuer}` : ""}
+                      </p>
+                    </div>
+                  </li>
+                );
+              }}
             </For>
           </ul>
         </div>

@@ -1,11 +1,4 @@
-import { profile } from "../lib/data";
-
-const stats = [
-  { k: "3+", v: "Years experience" },
-  { k: "15+", v: "Products integrated" },
-  { k: "30%", v: "Ops cost reduced" },
-  { k: "2×", v: "API throughput" },
-];
+import { profile, stats } from "../lib/data";
 
 export default function About() {
   return (

@@ -1,3 +1,4 @@
+import { Show } from "solid-js";
 import { profile } from "../lib/data";
 
 export default function Contact() {
@@ -40,8 +41,18 @@ export default function Contact() {
               rel="noopener"
               class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass glass-hover text-ink"
             >
-              <span class="i-carbon-logo-linkedin" /> @pravinsiye
+              <span class="i-carbon-logo-linkedin" /> @{profile.linkedinUser ?? "linkedin"}
             </a>
+            <Show when={profile.resumeUrl}>
+              <a
+                href={profile.resumeUrl}
+                target="_blank"
+                rel="noopener"
+                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass glass-hover text-ink"
+              >
+                <span class="i-carbon-document" /> Resume
+              </a>
+            </Show>
             <a
               href={`tel:${profile.phone.replace(/\s+/g, "")}`}
               class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass glass-hover text-ink"
